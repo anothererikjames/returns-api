@@ -1,0 +1,50 @@
+openapi: '3.0.3'
+info:
+  title: Returns API
+  version: 1.0.0
+  description: Product returns and refund processing
+  contact:
+    name: Returns Team
+    email: returns@acme.com
+paths:
+  /returns:
+    post:
+      summary: Initiate return
+      operationId: initiateReturn
+      tags: [Returns]
+      responses:
+        '201':
+          description: Return initiated
+    get:
+      summary: List returns
+      operationId: listReturns
+      tags: [Returns]
+      responses:
+        '200':
+          description: Returns list
+  /returns/{id}:
+    get:
+      summary: Get return status
+      operationId: getReturnStatus
+      tags: [Returns]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Return details
+  /refunds:
+    post:
+      summary: Process refund
+      operationId: processRefund
+      tags: [Refunds]
+      responses:
+        '201':
+          description: Refund processed
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
